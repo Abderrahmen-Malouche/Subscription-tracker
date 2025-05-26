@@ -1,6 +1,8 @@
 const errorMiddleware = (err,req,res,next)=>{
     try{
         let error = {...err};
+        error.message = err.message;
+        error.statusCode = err.statusCode ;
         // Mongoose bad ObjectId
         if(err.name=== 'CastError'){
             const message = "Resource not found";

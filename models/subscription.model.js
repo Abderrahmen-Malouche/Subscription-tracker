@@ -22,7 +22,7 @@ const subscriptionSchema = new mongoose.Schema({
         default: "EUR"
     },
     frequency: {
-        type: string,
+        type: String,
         required: [true, "Recurrence is required."],
         enum: ["daily", "monthly", "yearly"],
         default: "monthly"
@@ -35,7 +35,7 @@ const subscriptionSchema = new mongoose.Schema({
         trim: true
     },
     type: {
-        type: string,
+        type: String,
         required: [true, "Subscription type is required."],
         enum: ["Sports", "Entertainment", "News", "Education", "Health"],
         default: "Entertainment",
@@ -72,7 +72,7 @@ const subscriptionSchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
-const Subscription = mongoose.model("Subscription", subscriptionSchema);
+const subscriptionModel = mongoose.model("Subscription", subscriptionSchema);
 
 subscriptionSchema.pre("save", function (next) {
     if (!this.renewalDate) {
@@ -90,5 +90,5 @@ subscriptionSchema.pre("save", function (next) {
 
 })
 
-export default Subscription;
+export default subscriptionModel;
 
